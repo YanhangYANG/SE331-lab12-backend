@@ -13,3 +13,12 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+  application:
+    security:
+      jwt:
+        expiration: 86400000
+        refresh-token:
+          expiration: 2592000000
+
+
+

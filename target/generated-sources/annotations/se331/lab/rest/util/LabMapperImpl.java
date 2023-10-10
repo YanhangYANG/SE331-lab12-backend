@@ -13,7 +13,7 @@ import se331.lab.rest.entity.Participant;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-10T10:17:10+0700",
+    date = "2023-10-10T11:13:13+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
@@ -34,9 +34,13 @@ public class LabMapperImpl implements LabMapper {
         eventDTO.time( event.getTime() );
         eventDTO.petsAllowed( event.getPetsAllowed() );
         eventDTO.organizer( organizerToEventOrganizerDTO( event.getOrganizer() ) );
-        List<String> list = event.getImages();
+        List<Participant> list = event.getParticipants();
         if ( list != null ) {
-            eventDTO.images( new ArrayList<String>( list ) );
+            eventDTO.participants( new ArrayList<Participant>( list ) );
+        }
+        List<String> list1 = event.getImages();
+        if ( list1 != null ) {
+            eventDTO.images( new ArrayList<String>( list1 ) );
         }
 
         return eventDTO.build();

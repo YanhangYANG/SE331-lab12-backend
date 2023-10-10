@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,7 +29,8 @@ public class Event {
     @ManyToOne
     Organizer organizer;
     @ManyToMany(mappedBy = "eventHistory")
-    List<Participant> participants;
+            @Builder.Default
+    List<Participant> participants = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> images;
     Boolean petsAllowed;
