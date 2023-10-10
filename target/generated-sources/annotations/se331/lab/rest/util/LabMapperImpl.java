@@ -13,10 +13,25 @@ import se331.lab.rest.entity.Participant;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-10T21:03:26+0700",
+    date = "2023-10-11T02:51:43+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
+
+    @Override
+    public OrganizerDTO getOrganizerDTO(Organizer organizer) {
+        if ( organizer == null ) {
+            return null;
+        }
+
+        OrganizerDTO.OrganizerDTOBuilder organizerDTO = OrganizerDTO.builder();
+
+        organizerDTO.id( organizer.getId() );
+        organizerDTO.name( organizer.getName() );
+        organizerDTO.ownEvents( eventListToOrganizerOwnEventsDTOList( organizer.getOwnEvents() ) );
+
+        return organizerDTO.build();
+    }
 
     @Override
     public EventDTO getEventDto(Event event) {
@@ -61,21 +76,6 @@ public class LabMapperImpl implements LabMapper {
     }
 
     @Override
-    public OrganizerDTO getOrganizerDto(Organizer organizer) {
-        if ( organizer == null ) {
-            return null;
-        }
-
-        OrganizerDTO.OrganizerDTOBuilder organizerDTO = OrganizerDTO.builder();
-
-        organizerDTO.id( organizer.getId() );
-        organizerDTO.name( organizer.getName() );
-        organizerDTO.ownEvents( eventListToOrganizerOwnEventsDTOList( organizer.getOwnEvents() ) );
-
-        return organizerDTO.build();
-    }
-
-    @Override
     public List<OrganizerDTO> getOrganizerDto(List<Organizer> organizers) {
         if ( organizers == null ) {
             return null;
@@ -83,23 +83,10 @@ public class LabMapperImpl implements LabMapper {
 
         List<OrganizerDTO> list = new ArrayList<OrganizerDTO>( organizers.size() );
         for ( Organizer organizer : organizers ) {
-            list.add( getOrganizerDto( organizer ) );
+            list.add( getOrganizerDTO( organizer ) );
         }
 
         return list;
-    }
-
-    protected EventOrganizerDTO organizerToEventOrganizerDTO(Organizer organizer) {
-        if ( organizer == null ) {
-            return null;
-        }
-
-        EventOrganizerDTO.EventOrganizerDTOBuilder eventOrganizerDTO = EventOrganizerDTO.builder();
-
-        eventOrganizerDTO.id( organizer.getId() );
-        eventOrganizerDTO.name( organizer.getName() );
-
-        return eventOrganizerDTO.build();
     }
 
     protected OrganizerOwnEventsDTO eventToOrganizerOwnEventsDTO(Event event) {
@@ -135,5 +122,18 @@ public class LabMapperImpl implements LabMapper {
         }
 
         return list1;
+    }
+
+    protected EventOrganizerDTO organizerToEventOrganizerDTO(Organizer organizer) {
+        if ( organizer == null ) {
+            return null;
+        }
+
+        EventOrganizerDTO.EventOrganizerDTOBuilder eventOrganizerDTO = EventOrganizerDTO.builder();
+
+        eventOrganizerDTO.id( organizer.getId() );
+        eventOrganizerDTO.name( organizer.getName() );
+
+        return eventOrganizerDTO.build();
     }
 }

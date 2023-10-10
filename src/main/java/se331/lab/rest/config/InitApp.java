@@ -93,6 +93,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 tempEvent.setOrganizer(org3);
                 org3.getOwnEvents().add(tempEvent);
                 addUser();
+                org1.setUser(user1);
+                user1.setOrganizer(org1);
+                userRepository.save(user1);
+                org2.setUser(user2);
+                user2.setOrganizer(org2);
+        userRepository.save(user2);
+                org3.setUser(user3);
+                user3.setOrganizer(org3);
+        userRepository.save(user3);
+
                 orgRepository.save(Org.builder()
                                 .name("CMU")
                                 .address("239 Huay Kaew Rd., Muang District, Chiang Mai 50200")
@@ -141,9 +151,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
 
 
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+
+
     }
 
 
