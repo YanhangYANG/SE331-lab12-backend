@@ -13,7 +13,7 @@ import se331.lab.rest.entity.Participant;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-10T11:13:13+0700",
+    date = "2023-10-10T21:03:26+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18 (Oracle Corporation)"
 )
 public class LabMapperImpl implements LabMapper {
